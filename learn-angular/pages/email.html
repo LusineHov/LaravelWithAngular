@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Reset Password</div>
+                    <p class="alert alert-danger" ng-if="ResponseDetails.email[0]">{{ResponseDetails.email[0]}}</p>
+                    <p class="alert alert-warning" ng-if="ResponseDetails.message">{{ResponseDetails.message}}</p>
+                    <p class="alert alert-success" ng-if="ResponseDetails.successMessage">{{ResponseDetails.successMessage}}</p>
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                            <div class="col-md-6">
+                                <input ng-model="email" id="email" type="email" class="form-control" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-4">
+                                <button type="submit" class="btn btn-primary" ng-click="submit()">
+                                    Send Password Reset Link
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

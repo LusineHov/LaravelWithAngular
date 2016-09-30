@@ -1,0 +1,38 @@
+<div class="container container1">	
+	<ul ng-if="ResponseDetails" class="alert alert-danger">
+		<li ng-if="ResponseDetails.title[0]">{{ResponseDetails.title[0]}}</li>
+		<li ng-if="ResponseDetails.category_id[0]">{{ResponseDetails.category_id[0]}}</li>
+		<li ng-if="ResponseDetails.content[0]">{{ResponseDetails.content[0]}}</li>
+	</ul>
+	<h1>
+		Edit Post : <a ui-sref="postdetails({id:post.id})">{{ post.title}}</a>
+	</h1>
+	<form name="myForm">
+		<input type="hidden" name="_token" value="{{ csrf_token() }}">
+		<div class="form-group">
+			<input class="form-control"  type="text" ng-model="post.title">
+		</div>
+		<div class="form-group">
+			<input type="file" ngf-select ng-model="picFile" name="file"    
+             accept="image/*" ngf-max-size="2MB"
+             ngf-model-invalid="errorFile">
+      		<i ng-show="myForm.file.$error.maxSize">File too large 
+          	{{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+			<div ng-if="post.image" ng-hide="hidden_image" class="img" id="edit_img">
+				<img ng-src="/assets/images/{{post.image}}" width="50%" height="auto">
+			</div>
+			<input class="btn btn-primary" id="delete_image" name="delete_image" type="button" value="Delete image" ng-click="hidden_image = true">
+		</div>
+		<div class="form-group">
+			<select class="form-control" ng-model="categoryname">
+			  	<option ng-repeat="category in categories">{{category.name}}</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<textarea class="form-control" rows="8" placeholder="Post Content" ng-model="post.content" ></textarea>
+		</div>
+		<div class="form-group">
+			<button ng-click="uploadPic(picFile)" class="btn btn-primary" type="submit">Update Post</button>
+		</div>
+	</form>
+</div>
